@@ -1,0 +1,28 @@
+<div class="panel-header panel-header-sm">
+</div>
+
+
+<div>
+
+<ul *ngFor="let post of posts | async">
+  <li (click)="getPost(post.id)">
+    <strong>{{ post.data.title }} (<a href="#" (click)="deletePost(post.id)">delete</a>)</strong>
+    <br>
+    {{ post.data.content }}
+  </li>  
+</ul>
+
+</div>
+
+<div>
+    <label> Pdf src </label>
+    <input (change)="getDoc()" type="file" id="file">
+    <input [(ngModel)]="page" type="text" id="page">
+</div>
+
+    <pdf-viewer [src]=this.fd.pdfSrc
+      [render-text]="true"
+      [page]="page" 
+      [show-all]="false"
+      style="display: block;">
+    </pdf-viewer>

@@ -1,0 +1,38 @@
+<div class="panel-header panel-header-sm">
+</div>
+
+<div class="main-content">
+    <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-6 col-lg-4">
+
+            <!--Card-->
+            <div class="card card-chart">
+
+              <!-- Card header -->
+              <div class="card-header">Explore the world</div>
+
+              <!--Card content-->
+              <div class="card-body">
+
+                <!--Google map-->
+                <div class="card-body text-center">
+
+                  <agm-map [latitude]="lat" [longitude]="lng" [mapTypeId]="'roadmap'" style="height: 300px">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                  </agm-map>
+
+
+                </div>
+              </div>
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+
+    </div>
+    
+</div>
+

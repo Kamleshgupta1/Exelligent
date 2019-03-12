@@ -1,0 +1,30 @@
+<div class="panel-header panel-header-sm">
+</div>
+
+<div>
+<ul>
+      <li *ngFor="let deposit of deposits | async">
+          <a href="#" (click)="getDoc(deposit.id)">{{ deposit.doc }} for {{ deposit.amount }}</a>
+      </li>
+</ul>
+</div>
+
+<pdf-viewer [src]=getDoc.getdoc
+      [render-text]="true"
+      [page]="page" 
+      [show-all]="false"
+      style="display: block;">
+</pdf-viewer>
+
+<div>
+    <label> Pdf src </label>
+    <input (change)="getDocoff()" type="file" id="file">
+    <input [(ngModel)]="page" type="text" id="page">
+</div>
+
+    <pdf-viewer [src]=this.fd.pdfSrc
+      [render-text]="true"
+      [page]="page" 
+      [show-all]="false"
+      style="display: block;">
+    </pdf-viewer>

@@ -1,0 +1,195 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  
+  <div class="row" *ngIf="afAuth.user | async as user; else showLogin">
+    <div class="col-md-8">
+      <div class="card" style="height: 500px;">
+        <div class="card-header">
+          <h5 class="title">Profile</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>First Name</label>
+                  {{ user.displayName }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  {{ user.email }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Mobile</label>
+                  <input type="text" class="form-control" placeholder="Mobile" value="">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>City</label>
+                  <input type="text" class="form-control" placeholder="City" value="Mike">
+                </div>
+              </div>
+              <div class="col-md-4 px-1">
+                <div class="form-group">
+                  <label>Country</label>
+                  <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label>Postal Code</label>
+                  <input type="number" class="form-control" placeholder="ZIP Code">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn btn-warning text-dark" (click)="logout()">Logout</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-user" style="height: 500px;">
+        <div class="image">
+          <img src="../assets/img/bg5.jpg" alt="..."> 
+        </div>
+        <div class="card-body">
+          <div class="author">
+            <a href="#">
+              <img class="avatar border-gray" src="{{ user.photoURL }}" alt="...">
+              <h5 class="title">Mike Andrew</h5>
+            </a>
+            <p class="description">
+              michael24
+            </p>
+          </div>
+          <p class="description text-center">
+            "Lamborghini Mercy
+          </p>
+        </div>
+        <hr>
+        <div class="button-container">
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-twitter"></i>
+          </button>
+		  <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-instagram"></i>
+          </button>
+          <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+            <i class="fab fa-google-plus-g"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  <ng-template #showLogin>
+  <div  class="row">
+    <div class="col-md-12">
+      <div class="card p-2" style="height: 450px;">
+        <div class="card-body">
+          <div  class="row mx-auto"> 
+                <div class="w-50" style="border-right: 1px solid gray;">
+                  
+                <div class="row mx-1">
+                  <form>
+                        <div class="row mr-1">
+                            <div class="form-group">
+                              <input type="email" name="userEmail" class="form-control"  placeholder="Email" #userEmail required />
+                            </div>
+                        </div>
+                        <div class="row mr-1">
+                          <div class="mx-auto">
+                            <div class="form-group">
+                              <input type="password" name="userPassword" class="form-control" placeholder="Password" #userPassword required />
+                            </div>
+                            <div class="form-group">
+                              <button class="btn btn-warning text-dark px-3" (click)="login(userEmail.value, userPassword.value)"><b>Login</b></button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row text-right">
+                                    <button type="button" class="btn btn-sm" style="background-color: #55acee;width: 140px;"><b>T</b></button>
+                        </div>
+                        <div class="row text-right">
+                                <button type="button" class="btn btn-sm" (click)="loginfb()" style="background-color: #3b5999;width: 140px;"><b>F</b></button>
+                        </div>
+                        <div class="row text-right">
+                                <button type="button" class="btn btn-sm" (click)="logingoogle()" style="background-color: #dd4b39;width: 140px;"><b>G</b></button>
+                        </div>   
+                </form>
+                </div>
+              </div>
+              <div class="row ml-1">
+                  <div class="row ml-3">
+                  <span class="error" *ngIf="error">{{ error }}</span>
+                  <form>
+                        <div class="row">
+                            <div class="form-group">
+                              <input type="text" class="form-control" name="name" placeholder="Full name" [(ngModel)]="name" required autofocus autocomplete="additional-name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                              <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="email" #userEmail required autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                              <input type="mobile" class="form-control" name="mobile" placeholder="Mobile" [(ngModel)]="mobile" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                              <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="password" #userPassword required>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="mx-auto">
+                            <div class="form-group">
+                              <input type="password" class="form-control" name="cpassword" placeholder="Confirm password" [(ngModel)]="cpassword" required>
+                            </div>
+                            <div class="form-group">
+                              <button class="btn btn-warning text-dark px-3" (click)="register(userEmail.value, userPassword.value)"><b>Register</b></button>
+                            </div>
+                          </div>
+                        </div> 
+                  </form>
+                  </div>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  </ng-template>
+
+</div>
+
+<!--
+  <div class="row">
+    <div class="col-md-12 card p-2"> 
+        <button *ngIf="isLoggedIn" class="btn btn-warning text-dark px-3">
+                <b><a class="nav-link"  (click)="logout()">Logout</a></b>
+        </button>  
+    </div>
+      
+  </div>
+-->
