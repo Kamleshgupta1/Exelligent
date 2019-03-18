@@ -113,6 +113,7 @@ export class FiledownloadService {
    getDoc(postId) {
         this.postDoc = this.afs.doc('document/'+postId);
         this.dox = this.docDoc.valueChanges();
+
    }
       
    onclick() {

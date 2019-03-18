@@ -14,13 +14,14 @@ export class MathsComponent implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   
-  constructor(private storage: AngularFireStorage) {}
+  constructor(private storage: AngularFireStorage, private afs: AngularFirestore) {}
   
   uploadFile(event) {
     const file = event.target.files[0];
     const filePath = file.name;
     const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
+    const task = this.storage.upload(filePath, file);  // store in storage
+    this.afs.collection('document').add({'doc': file.name});  // store in firestore > document
 
     // observe percentage changes
     this.uploadPercent = task.percentageChanges();

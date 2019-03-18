@@ -3,4 +3,17 @@
 
 <input type="file" (change)="uploadFile($event)" />
     <div>{{ uploadPercent | async }}</div>
-    <a [href]="downloadURL | async">{{ downloadURL }}</a>
+    <button type="button" class="btn btn-info"><a [href]="downloadURL | async" download><i class="fa fa-download"></i> Download</a></button>
+<div>
+    <img [src]="downloadURL | async" />
+</div>
+
+<div>
+    <pdf-viewer [src]=downloadURL
+      [render-text]="true"
+      [page]="page" 
+      [show-all]="false"
+      style="display: block;">
+    </pdf-viewer>
+</div>
+
